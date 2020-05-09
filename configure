@@ -113,7 +113,7 @@ printParas() {
   else
     echo "  mfa support:  no";
   fi
-  if test $ARG_WITH_LDAP_CONFIG = 1; then 
+  if test $ARG_WITH_LDAP_CONFIG = 1; then
     echo "  ldap-based configuration:  yes";
   else
     echo "  ldap-based configuration:  no";
@@ -407,6 +407,7 @@ checkDependencies() {
           cfgwrite "MFA_LIBS := -loath"
       fi;
   fi
+  checkLinking "sodium"   optional;
   if test "x$ARG_CFGSSL" = "xauto"; then
       checkLinking "ssl"     optional;
       if test $? != 0; then

@@ -44,10 +44,14 @@ BuildRequires:  gcc-objc gnustep-base gnustep-make sope%{sope_major_version}%{so
 %{?el7:BuildRequires: lasso-devel}
 %{?el7:Requires: liboath}
 %{?el7:BuildRequires: liboath-devel}
+%{?el7:Requires: libsodium}
+%{?el7:BuildRequires: libsodium-devel}
 %{?el8:Requires: lasso}
 %{?el8:BuildRequires: lasso-devel}
 %{?el8:Requires: liboath}
 %{?el8:BuildRequires: liboath-devel}
+%{?el8:Requires: libsodium}
+%{?el8:BuildRequires: libsodium-devel}
 
 %description
 SOGo is a groupware server built around OpenGroupware.org (OGo) and
