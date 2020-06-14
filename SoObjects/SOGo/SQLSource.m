@@ -499,6 +499,7 @@
               for (i = 0; i < [_mailFields count]; i++)
                 {
                   field = [_mailFields objectAtIndex: i];
+                  // TODO: remove the name properly
                   if ([field caseInsensitiveCompare: @"mail"] != NSOrderedSame
                       && ![_loginFields containsObject: field])
                     {

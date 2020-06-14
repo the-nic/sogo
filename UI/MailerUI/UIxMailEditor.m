@@ -234,15 +234,27 @@ static NSArray *infoKeys = nil;
 
 - (NSString *) _emailFromIdentity: (NSDictionary *) identity
 {
-  NSString *fullName, *format;
+  NSString *email;
+  NSRange delimiter;
 
-  fullName = [identity objectForKey: @"fullName"];
-  if ([fullName length])
-    format = @"%{fullName} <%{email}>";
+  email     = [identity objectForKey: @"email"];
+
+  delimiter = [email rangeOfString: @"<"];
+  // 'bro@example.com' => '"Bro" <bro@example.com>'  (fullName = "Bro")
+  // 'bro@example.com' => 'bro@example.com'          (fullName = "")
+  if (delimiter.location == NSNotFound)
+    {
+      if ([[identity objectForKey: @"fullName"] length])
+        return [identity keysWithFormat: @"%{fullName} <%{email}>"];
+      else
+        return email;
+    }
+  // '<bro@example.com>' => 'bro@example.com' (fullName = "Bro" or "")
+  else if (delimiter.location == 0)
+    return [email pureEMailAddress];
+  // '"Dude" <bro@example.com>' => '"Dude" <bro@example.com>' (fullName = "Bro" or "")
   else
-    format = @"%{email}";
-
-  return [identity keysWithFormat: format];
+    return email;
 }
 
 - (NSString *) from

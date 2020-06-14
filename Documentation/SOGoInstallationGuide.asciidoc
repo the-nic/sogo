@@ -1712,6 +1712,8 @@ authentication usernames (defaults to `c_uid` when unset).
 additional email addresses (beside the `mail` column) for each user.
 Values must be unique and not appear in more than one column.
 Space-separated values allowed in all *additional* columns (besides in `mail`).
+Accepted formats of the entries within the specified field can be the
+pure email address or the name plus the email: `"Jon Doe" <jon.doe@example.com>`.
 
 |SearchFieldNames (optional)
 |An array of fields to match against the search string when filtering
